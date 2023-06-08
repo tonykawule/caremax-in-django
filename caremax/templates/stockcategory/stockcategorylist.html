@@ -1,0 +1,37 @@
+{% extends 'patient/main.html' %} 
+ {% load static %}
+ {% block content %}
+ <div class="container">
+  <br> 
+  <div> 
+   <a href="{% url 'newstockcategory' %}"><i class="fa-sharp fa-solid fa-plus"></i>add stck category</a>
+   <h4>Stock Category</h4>
+    <table class="content-table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Action</th>
+        
+      </tr>
+      </thead>
+
+        {% for stockcategory in stockcategories %}
+        <tbody>
+        <tr>
+        <td><a href="{% url 'editstockcategory' stockcategory.id %}">{{ stockcategory.name }}</a</td>
+        
+        <td>
+          <a href="{% url 'deletestockcategory' stockcategory.id %}"><i class="fa-sharp fa-solid fa-trash"></i>drop</a>
+        </td>
+      </tr>
+
+          {% empty %}
+             <h4>No stock category created yet</h4>
+        {% endfor %}
+      
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+{% endblock content %}

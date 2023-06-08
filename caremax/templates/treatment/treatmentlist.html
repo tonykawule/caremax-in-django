@@ -1,0 +1,41 @@
+{% extends 'patient/main.html' %} 
+ {% load static %}
+ {% block content %}
+
+<div class="container">
+ <div> 
+  <br>
+  &nbsp;&nbsp; | &nbsp;&nbsp;
+<a href="{% url 'patientlist' %}">go to patient list</a>
+  <h4>Treatments {{ patient.name }}</h4>
+  
+   <table class="content-table">
+     <thead>
+     <tr>
+      <th>Date</th>
+       <th>Treatment Name</th>
+       <th>Doze</th> 
+       <th>Remarks</th>
+       <th>Operation</th>
+     </tr>
+     </thead>
+
+       {% for treatment in treatments.display_treatments.all %}
+       <tbody>
+       <tr>
+        <td>{{ treatment.date }}</td> 
+       <td>{{ treatment.treatmentname }}</td>
+       <td>{{ treatment.doze}}</td>
+       <td>{{ treatment.remarks}}</td>
+       <td>
+         <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"></i></a>
+      
+       </td>
+       {% endfor %}
+     </tr>
+     </tbody>
+   </table>
+ </div>
+</div>
+</div>
+{% endblock content %}

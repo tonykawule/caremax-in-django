@@ -1,0 +1,51 @@
+{% extends 'patient/main.html' %} 
+ {% load static %}
+ {% block content %}
+ <div class="container">
+  <br> 
+  <div> 
+   <a href="{% url 'newstock' %}"><i class="fa-sharp fa-solid fa-plus"></i>add item</a>
+   <h4>Stock</h4>
+    <table class="content-table">
+      <thead>
+      <tr>
+        <th>Item Name</th>
+        <th>Category</th>
+        <th>Quantity In Store</th>
+        <th>Reorder Level</th>
+        <th>Operation</th>
+      </tr>
+      </thead>
+      
+        {% for stock in stocks %}
+        <tbody>
+        <tr>
+        <td><a href="{% url 'editstock' stock.id %}">{{ stock.item_name }}</a></td>
+        <td>{{ stock.stockcategory }}</td>
+        <td>
+          {% if instance.quantity <= stock.reorder_level %}
+            <div style = "background-color: orange;">
+              <a href="{% url 'stock_detail' stock.id %}">{{ stock.quantity }}</a>
+            </div>
+          {% else %}
+            <a href="{% url 'stock_detail' stock.id %}">{{ stock.quantity }}</a>
+          {% endif %}  
+  
+          <td><a href="{% url 'reorder_level' stock.id %}">{{ stock.reorder_level }}</a></td>
+        </td>
+        
+        <td>
+          <a href="{% url 'deletestock' stock.id %}"><i class="fa-sharp fa-solid fa-trash">delete</i></a>
+        </td>
+      </tr>
+
+          {% empty %}
+             <h4>No stock item registered yet</h4>
+        {% endfor %}
+      
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,60 @@
+{% extends 'patient/main.html' %} 
+{% load crispy_forms_tags %} 
+ {% load static %}
+ {% block content %}
+  <br> 
+  <div> 
+   <a href="{% url 'newpatient' %}"><i class="fa-sharp fa-solid fa-plus"></i>patient</a>
+   <h4>Registered patients</h4>
+
+   
+    <table class="content-table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Contact</th>
+        <th>Allergy</th>
+        <th>Address</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Next of kin</th>
+        <th>Contact</th>
+        <th>Relatioship</th>
+        <th>Operation</th>
+      </tr>
+      </thead>
+
+        {% for patient in patients %}
+        <tbody>
+          <tr>
+           <td><a href="{% url 'editpatient' patient.id %}">{{ patient.name }}</a</td>
+           <td>{{ patient.age }}</td>
+           <td>{{ patient.contact }}</td>
+           <td>{{ patient.allergy }}</td>
+           <td>{{ patient.address }}</td>
+           <td>{{ patient.email }}</td>
+           <td>{{ patient.gender }}</td>
+           <td>{{ patient.nextofkin }}</td>
+           <td>{{ patient.contact }}</td>
+           <td>{{ patient.relationship }}</td>
+           <td>
+             <!--<a href="{% url 'editpatient' patient.id %}"><i class="fa-sharp fa-regular fa-pen-to-square"></i></a> -->
+             <a href="{% url 'deletepatient' patient.id %}"><i class="fa-solid fa-trash"></i></a>
+             <a href="{% url 'visitlist' patient_id=patient.id %}"><i class="fa-sharp fa-solid fa-plus"></i>vist</a>
+             <a href="{% url 'treatmentlist' patient_id=patient.id %}"><i class="fa-sharp fa-solid fa-plus"></i>treat</a>
+             <a href="{% url 'profile' patient.id %}"><i class="fa-solid fa-file"></i>file</a> 
+             <a href="{% url 'testlist' patient_id=patient.id %}"><i class="fa-sharp fa-solid fa-plus"></i>test</a>
+             <a href="{% url 'newpatientbill' patient_id=patient.id %}"><i class="fa-sharp fa-solid fa-plus"></i>newbill</a>
+          </td>
+         </tr>
+
+          {% empty %}
+             <h4>No patient registered yet</h4>
+        {% endfor %}
+      
+       </tbody>
+    </table>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends 'patient/main.html' %} 
+ {% load static %}
+ {% block content %}
+
+<div class="container">
+ <div> 
+  <br>
+  &nbsp;&nbsp; | &nbsp;&nbsp;
+<a href="{% url 'patientlist' %}">go to patient list</a> || <a href="#">new bill</a>
+<br>
+<br>
+  <h4>Payment History page  {{ patient }}</h4>
+  
+   <table class="content-table">
+     <thead>
+     <tr>
+      <th>Date</th>
+       <th>Amount Billed (Ugx)</th>
+       <th>Amount paid (Ugx)</th>
+       <th>Balance (Ugx)</th> 
+       <th>Operation</th>
+     </tr>
+     </thead>
+
+       {% for bill in bills.display_bills.all %}
+       <tbody>
+       <tr>
+        <td>{{ bill.date }}</td> 
+        <td>{{ bill.bill }}</td> 
+        <td>{{ bill.amountpaid }}</td>
+        <td>{{ bill.balance }}</td>
+       <td>
+         <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"></i></a>
+      
+       </td>
+       {% endfor %}
+     </tr>
+     </tbody>
+   </table>
+ </div>
+</div>
+</div>
+{% endblock content %}

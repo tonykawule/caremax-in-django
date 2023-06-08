@@ -1,0 +1,43 @@
+{% extends 'patient/main.html' %} {% load static %} {% block content %}
+<br>
+<div class="container">
+  <div>
+    &nbsp;&nbsp; | &nbsp;&nbsp;
+    <a href="{% url 'patientlist' %}">go to patient list</a>
+    <br />
+    
+    <h4>visitation history</h4>
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Past Complaint</th>
+          <th>Present Complaint</th>
+          <th>Recommandation</th>
+          <th>Operation</th>
+        </tr>
+      </thead>
+
+      {% for visit in visits.display_visits.all %}
+      <tbody>
+        <tr>
+          <td>{{ visit.date }}</td>
+          <td>{{ visit.pastcomplaint }}</td>
+          <td>{{ visit.presentcomplaint }}</td>
+          <td>{{ visit.recommendation }}</td>
+
+          <td>
+            <a href="{ url 'editpatientvisit' paitient_id=visit.patient_id, id=visit.id}"
+              ><i class="fa-sharp fa-regular fa-pen-to-square"></i></a
+            >
+          </td>
+        </tr>
+        {% empty %}
+        <h4>No visit registered yet for {{ patient }}</h4>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock content %}

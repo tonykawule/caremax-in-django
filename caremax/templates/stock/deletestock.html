@@ -1,0 +1,22 @@
+{% extends 'patient/main.html' %} {% load crispy_forms_tags %} {% load static %}
+{% block content %}
+<div class="container">
+  <br />
+  <p>Are you sure want to delete "{{ inventory }}"</p>
+
+  <form method="POST">
+    {% csrf_token %}
+
+    <a class="btn btn-sm btn-danger" href="{% url 'stocklist' %}">Cancel</a>
+    <br />
+    <br />
+
+    <input
+      class="btn btn-sm btn-primary"
+      type="submit"
+      value="confirm"
+      name="confirm"
+    />
+  </form>
+</div>
+{% endblock %}

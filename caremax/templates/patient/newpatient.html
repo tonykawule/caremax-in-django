@@ -1,0 +1,37 @@
+{% extends 'patient/main.html' %} 
+{% load crispy_forms_tags %} 
+{% load static %}
+{% block content %}
+<body>
+    
+<div class="row">
+  <div class="col-lg-4">
+    <div class="box-element">
+      <h5>Add patient</h5>
+ 
+      <form method="POST" action="">
+        {% csrf_token %} {{ form | crispy }}
+
+        <div>
+          <input type="submit" name="Submit" />
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

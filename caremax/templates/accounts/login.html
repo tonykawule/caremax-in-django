@@ -1,0 +1,101 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"
+/>
+<script
+  src="https://kit.fontawesome.com/59b3b3a5dc.js"
+  crossorigin="anonymous"
+></script>
+
+{% block content %}
+
+<div class="container">
+  <div class="form-box">
+    <h4>Login</h4>
+    <form method="POST" action="">
+      {% csrf_token %}
+      <div class="input-group">
+        <div class="input-field">
+          <i class="fa-solid fa-user"></i>
+          <input type="text" name="username" placeholder="username" />
+        </div>
+
+        <div class="input-field">
+          <i class="fa-solid fa-lock"></i>
+          <input type="password" name="password" placeholder="password" />
+        </div>
+
+        <p class="login-link">If you don't have an account <a href="{% url 'register' %}">register</a></p>
+
+        <div class="btn-field">
+          <button type="submit">Login</button>
+        </div>
+
+        <div class="message">
+          {% for message in messages %}
+           <p>{{ message }}</p>
+          {% endfor %}
+         </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+<!--<h2>Register</h2>
+
+<form method="POST" action="">
+    
+    {% csrf_token %}
+
+    {{ form.errors }}
+
+    {{ form.username.label}}
+    {{ form.username}}
+
+    {{ form.email.label }}
+    {{ form.email }}
+
+    {{ form.password1.label }}
+    {{ form.password1 }}
+
+    {{ form.password2.label}}
+    {{ form.password2}}
+
+    <input type="submit" value="Register" />
+
+</form>-->
+
+
+
+<!--<h3>Login</h3>
+<form method="POST" action="">
+  {% csrf_token %}
+
+  <div>
+    {% for message in messages %}
+     <p>{{ message }}</p>
+    {% endfor %}
+   </div>
+
+
+  <div>
+    <input type="text" name="username" placeholder="username" />
+  </div>
+
+  <div>
+    <input type="password" name="password" placeholder="password" />
+  </div>
+
+  <input type="submit" value="Login" />
+
+  <p>
+    If you don't have an account <a href="{% url 'register' %}">register</a>
+  </p>
+</form>
+</div>-->

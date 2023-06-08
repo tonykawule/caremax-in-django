@@ -1,0 +1,40 @@
+{% extends 'patient/main.html' %} 
+ {% load static %}
+ {% block content %}
+ 
+<div class="container">
+  <div> 
+   <a class="nav-link" href="{% url 'newpatient' %}">add patient</a>
+   <h4>patient visits</h4>
+    <table class="content-table">
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>Past Complaint</th>
+        <th>Present Complaint</th>
+        <th>Recommandation</th>
+        <th>Operation</th>
+      </tr>
+      </thead>
+
+        {% for visit in visits %}
+        <tbody>
+        <tr>
+        <td>{{ visit.date }}</td>
+        <td>{{ visit.pastcomplaint }}</td>
+        <td>{{ visit.presentcomplaint }}</td>
+        <td>{{ visit.recommandation }}</td>
+        
+        <td>
+        <a class="btn btn-sm btn-info" href="{% url 'editpatient' patient.id %}">update</a>
+          <a class="btn btn-sm btn-danger" href="{% url 'deletepatient' patient.id %}">delete</a>
+          <a class="btn btn-sm btn-primary" href="{% url 'newpatientvisit' patient_id=patient.id %}">view</a>
+        </td>
+        {% endfor %}
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+{% endblock content %}

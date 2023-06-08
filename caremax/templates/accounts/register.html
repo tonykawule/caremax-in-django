@@ -1,0 +1,56 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"
+/>
+<script
+  src="https://kit.fontawesome.com/59b3b3a5dc.js"
+  crossorigin="anonymous"
+></script>
+
+{% block content %}
+
+<div class="container">
+  <div class="form-box">
+    <h4>Sign up</h4>
+    <form method="POST" action="">
+      {% csrf_token %}
+      <div class="input-group">
+        <div class="input-field">
+          <i class="fa-solid fa-user"></i>
+          {{ form.username }}
+        </div>
+
+        <div class="input-field">
+          <i class="fa-solid fa-envelope"></i>
+          {{ form.email }}
+        </div>
+
+        <div class="input-field">
+          <i class="fa-solid fa-lock"></i>
+          {{ form.password1 }}
+        </div>
+
+        <div class="input-field">
+          <i class="fa-solid fa-lock"></i>
+          {{ form.password2 }}
+        </div>
+
+        <p class="login-link">
+          If you have an account <a href="{% url 'login' %}">Login</a>
+        </p>
+
+        <div class="btn-field">
+          <button type="submit">Sign up</button>
+        </div>
+        <div>{{ form.errors }}</div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+
